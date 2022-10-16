@@ -22,6 +22,8 @@ class FIFO(address_width: Int) extends Module{
     val read_pointer = RegInit(0.U((address_width+1).W))
     val write_pointer = RegInit(0.U((address_width+1).W))
 
+    val write_pointer_next = Wire(UInt((address_width+1).W))
+
     // flag
     val is_empty_reg = RegInit(true.B)
     val is_full_reg = RegInit(false.B)
@@ -30,20 +32,22 @@ class FIFO(address_width: Int) extends Module{
     io.is_full := is_full_reg
 
     // flag update
-    is_full_reg := Cat(~write_pointer(address_width), write_pointer(address_width-1, 0)) === read_pointer
-    is_empty_reg := read_pointer === write_pointer
+    write_pointer_next := write_pointer + Mux((io.write_en && !is_full_reg), 1.U, 0.U)
+
+    is_full_reg := Cat(~write_pointer_next(address_width), write_pointer_next(address_width-1, 0)) === read_pointer
+    is_empty_reg := read_pointer === write_pointer_next
 
     // write data
     when(!is_full_reg && io.write_en){
-        ram.write(write_pointer, io.data_i)
-        write_pointer := write_pointer(address_width-1, 0) + 1.U
+        ram.write(write_pointer(address_width-1, 0), io.data_i)
+        write_pointer := write_pointer + 1.U
     }
 
     // read data
     val data_o_reg = RegInit(0.U(3.W))
     when(!is_empty_reg && io.read_en){
-        data_o_reg := ram.read(read_pointer)
-        read_pointer := read_pointer(address_width-1, 0) + 1.U
+        data_o_reg := ram.read(read_pointer(address_width-1, 0))
+        read_pointer := read_pointer + 1.U
     }
     io.data_o := data_o_reg
 

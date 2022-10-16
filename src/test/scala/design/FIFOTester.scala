@@ -34,7 +34,16 @@ class FIFOTester2 extends AnyFlatSpec with ChiselScalatestTester{
                 dut.clock.step(nextInt(3))
             }
 
-            dut.clock.step(5)
+            for (data_in <- 4 to 6){  
+                // 写数据
+                dut.io.write_en.poke(true.B)
+                dut.io.data_i.poke(data_in.U)
+                dut.clock.step(1)
+
+                // 写间隔
+                dut.io.write_en.poke(false.B)
+                dut.clock.step(nextInt(3))
+            }
         }
 
     }
