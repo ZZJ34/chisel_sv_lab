@@ -3,6 +3,7 @@ package design
 import chisel3._
 import chisel3.util._
 
+// FIFO 存储单元
 class FIFO(address_width: Int) extends Module{
     val io = IO(new Bundle{
         // read port
