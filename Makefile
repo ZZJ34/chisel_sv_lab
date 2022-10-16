@@ -1,5 +1,5 @@
 TEST_PACKAGE := design
-TEST_NAME    := FIFOTester1
+TEST_NAME    := FIFOTester2
 
 # Generate Verilog code
 gen:
