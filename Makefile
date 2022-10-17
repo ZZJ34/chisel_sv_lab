@@ -1,5 +1,5 @@
 TEST_PACKAGE := design
-TEST_NAME    := FIFOTester3
+TEST_NAME    := DataPath_8to3Tester1
 
 # Generate Verilog code
 gen:

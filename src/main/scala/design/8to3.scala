@@ -11,7 +11,7 @@ class handshake_channel extends Bundle{
 }
 
 // 8bit 转 3bit 数据通路
-class DataPath_8to3 extends Module{
+class DataPath_8to3(address_width: Int) extends Module{
     val io = IO(new Bundle{
         // 输入数据通路
         val handshake_i = new handshake_channel()
@@ -24,7 +24,7 @@ class DataPath_8to3 extends Module{
     val leave_2bit = RegInit(0.U(2.W))  // 剩余的 2bit
     val leave_1bit = RegInit(0.U(1.W))  // 剩余的 1bit
 
-    val FIFO = Module(new FIFO(4))
+    val FIFO = Module(new FIFO(address_width))
 
     // 状态定义
     val nothing :: leave_none_1 :: leave_none_2 :: leave_2bit_1 :: leave_2bit_2 :: leave_2bit_3 :: leave_1bit_1 :: leave_1bit_2 :: leave_1bit_3 :: Nil = Enum(9)
@@ -54,7 +54,7 @@ class DataPath_8to3 extends Module{
                 state_reg := leave_none_2
             }
             
-            leave_2bit := io.data_i(8,7)
+            leave_2bit := io.data_i(7,6)
         }
         is(leave_none_2){
             when(FIFO.io.is_full){
@@ -76,7 +76,7 @@ class DataPath_8to3 extends Module{
                 state_reg := leave_2bit_2
             }
 
-            leave_1bit := io.data_i(8)
+            leave_1bit := io.data_i(7)
         }
         is(leave_2bit_2){
             when(FIFO.io.is_full){
@@ -128,16 +128,13 @@ class DataPath_8to3 extends Module{
     }
 
 
-    val write_en_wire = Wire(Bool())
-    val data_i_wire = Wire(UInt(3.W))
+    val write_en_wire = WireDefault(false.B)
+    val data_i_wire = WireDefault(0.U(3.W))
 
     FIFO.io.write_en := write_en_wire
     FIFO.io.data_i := data_i_wire  
     // FIFO 写入数据
     switch(state_reg){
-        is(nothing) {
-            write_en_wire := false.B
-        }
         is(leave_none_1) {
             write_en_wire := true.B
             data_i_wire := io.data_i(2, 0)
