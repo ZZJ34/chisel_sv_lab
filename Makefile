@@ -1,5 +1,5 @@
 TEST_PACKAGE := design
-TEST_NAME    := DataPath_8to3Tester1
+TEST_NAME    := DataPath_8to3Tester2
 
 # Generate Verilog code
 gen:
@@ -12,5 +12,9 @@ test_all:
 # Run the designative test
 test_one:
 	sbt "testOnly ${TEST_PACKAGE}.${TEST_NAME}"
+
+# clean
+clean:
+	rm -rf ./test_run_dir
 
 
