@@ -1,5 +1,5 @@
 TEST_PACKAGE := design
-TEST_NAME    := DataPath_8to3Tester2
+TEST_NAME    := DataPath_MuxTester1
 
 # Generate Verilog code
 gen:
@@ -11,6 +11,7 @@ test_all:
 
 # Run the designative test
 test_one:
+	clear
 	sbt "testOnly ${TEST_PACKAGE}.${TEST_NAME}"
 
 # clean
