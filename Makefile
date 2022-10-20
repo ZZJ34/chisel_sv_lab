@@ -1,5 +1,5 @@
 TEST_PACKAGE := design
-TEST_NAME    := DataPath_MuxTester1
+TEST_NAME    := TopTester1
 
 # Generate Verilog code
 gen:
