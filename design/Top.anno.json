@@ -5,7 +5,7 @@
   },
   {
     "class":"firrtl.transforms.BlackBoxTargetDirAnno",
-    "targetDir":"verilog"
+    "targetDir":"design"
   },
   {
     "class":"firrtl.transforms.CombinationalPath",

@@ -40,5 +40,5 @@ class Top(channel_num: Int, address_width: Int) extends Module{
 
 object TopMain extends App {
     println("Generating the Top Verilog HDL")
-    emitVerilog(new Top(8, 4), Array("--target-dir", "verilog"))
+    emitVerilog(new Top(8, 4), Array("--target-dir", "design"))
 }
