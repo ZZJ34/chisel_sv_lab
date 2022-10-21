@@ -19,34 +19,38 @@ class DataPath_Mux(channel_num: Int) extends Module{
         val data_grant = Output(UInt(8.W))
     })
 
+    val prioity_vec_in = Wire(Vec(channel_num, UInt(8.W)))
+    // 若通道 valid=0 ， 认定权重为 0 
+    for(index <- 0 until channel_num){
+        prioity_vec_in(index) := io.prioity_vec(index) & io.valid_vec(index)
+    }
+
+
+    // 保存中间的比较结果
     val prioity_vec_temp = Wire(Vec(channel_num, UInt(8.W)))
+    // 最大权重
     val prioity_max = Wire(UInt(8.W))
 
-    prioity_vec_temp(0) := io.prioity_vec(0)
+    prioity_vec_temp(0) := prioity_vec_in(0)   
 
     for(index <- 1 until channel_num){
-        prioity_vec_temp(index) := Mux(io.prioity_vec(index) > prioity_vec_temp(index-1), io.prioity_vec(index), prioity_vec_temp(index-1))
+        prioity_vec_temp(index) := Mux(prioity_vec_in(index) > prioity_vec_temp(index-1), io.prioity_vec(index), prioity_vec_temp(index-1))
     }
 
     prioity_max := prioity_vec_temp(channel_num-1)
 
-    val valid_vec_temp = Wire(Vec(channel_num+1, Bool()))
-    val data_vec_temp = Wire(Vec(channel_num+1, UInt(8.W)))
-
-    valid_vec_temp(0) := false.B
-    data_vec_temp(0) := 0.U
+    io.valid_grant := false.B
+    io.data_grant := 0.U
 
     for(index <- 0 until channel_num){
-        // 输出信号
-        valid_vec_temp(index+1) := Mux(io.prioity_vec(index) === prioity_max, io.valid_vec(index), valid_vec_temp(index))
-        data_vec_temp(index+1) := Mux(io.prioity_vec(index) === prioity_max, io.data_vec(index), data_vec_temp(index))
+        when((prioity_vec_in(index) === prioity_max) & io.valid_vec(index)){
+            io.valid_grant := io.valid_vec(index)
+            io.data_grant := io.valid_vec(index)
+        }
     }
 
+    // 输入信号
     for(index <- 0 until channel_num){
-        // 输入信号
-        io.ready_vec(index) := Mux(io.prioity_vec(index) === prioity_max, io.ready_grant, false.B)
+        io.ready_vec(index) := Mux((prioity_vec_in(index) === prioity_max) & io.valid_vec(index), io.ready_grant, false.B)
     }
-
-    io.valid_grant := valid_vec_temp(channel_num)
-    io.data_grant := data_vec_temp(channel_num)
 }
