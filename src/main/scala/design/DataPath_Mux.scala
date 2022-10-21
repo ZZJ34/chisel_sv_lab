@@ -22,7 +22,7 @@ class DataPath_Mux(channel_num: Int) extends Module{
     val prioity_vec_in = Wire(Vec(channel_num, UInt(8.W)))
     // 若通道 valid=0 ， 认定权重为 0 
     for(index <- 0 until channel_num){
-        prioity_vec_in(index) := io.prioity_vec(index) & io.valid_vec(index)
+        prioity_vec_in(index) := Mux(io.valid_vec(index), io.prioity_vec(index), 0.U)
     }
 
 
