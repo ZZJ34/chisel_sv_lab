@@ -47,15 +47,13 @@ module test_bench();
 
     `include "./test_task.sv"
 
-    Input_Data pkt;
-
+    
     // main
     initial begin
-        repeat(5) begin
-            pkt = new();
-            pkt.randomize();
-            pkt.display();  
-        end
+
+        put_data(10);
+
+        get_data();
         
         $finish();
     end
