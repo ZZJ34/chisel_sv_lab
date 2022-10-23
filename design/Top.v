@@ -243,50 +243,47 @@ module DataPath_8to3(
   wire [3:0] _GEN_1 = flag_reg == 2'h1 ? 4'h3 : _GEN_0; // @[DataPath_8to3.scala 46:{42,54}]
   wire  _T_4 = 4'h1 == state_reg; // @[DataPath_8to3.scala 42:22]
   wire  _T_5 = 4'h2 == state_reg; // @[DataPath_8to3.scala 42:22]
-  wire [3:0] _GEN_5 = io_handshake_i_valid ? 4'h3 : 4'h0; // @[DataPath_8to3.scala 63:43 64:31 66:31]
-  wire [3:0] _GEN_6 = FIFO_io_is_full ? 4'h2 : _GEN_5; // @[DataPath_8to3.scala 60:34 61:27]
+  wire [3:0] _GEN_5 = FIFO_io_is_full ? 4'h2 : 4'h0; // @[DataPath_8to3.scala 60:34 61:27 63:27]
   wire  _T_6 = 4'h3 == state_reg; // @[DataPath_8to3.scala 42:22]
-  wire [3:0] _GEN_7 = FIFO_io_is_full ? 4'h3 : 4'h4; // @[DataPath_8to3.scala 73:34 74:27 76:27]
+  wire [3:0] _GEN_6 = FIFO_io_is_full ? 4'h3 : 4'h4; // @[DataPath_8to3.scala 69:34 70:27 72:27]
   wire  _T_7 = 4'h4 == state_reg; // @[DataPath_8to3.scala 42:22]
-  wire [3:0] _GEN_8 = FIFO_io_is_full ? 4'h4 : 4'h5; // @[DataPath_8to3.scala 82:34 83:27 85:27]
+  wire [3:0] _GEN_7 = FIFO_io_is_full ? 4'h4 : 4'h5; // @[DataPath_8to3.scala 78:34 79:27 81:27]
   wire  _T_8 = 4'h5 == state_reg; // @[DataPath_8to3.scala 42:22]
-  wire [3:0] _GEN_9 = io_handshake_i_valid ? 4'h6 : 4'h0; // @[DataPath_8to3.scala 92:43 93:31 95:31]
-  wire [3:0] _GEN_10 = FIFO_io_is_full ? 4'h5 : _GEN_9; // @[DataPath_8to3.scala 89:34 90:27]
+  wire [3:0] _GEN_8 = FIFO_io_is_full ? 4'h5 : 4'h0; // @[DataPath_8to3.scala 85:34 86:27 88:27]
   wire  _T_9 = 4'h6 == state_reg; // @[DataPath_8to3.scala 42:22]
-  wire [3:0] _GEN_11 = FIFO_io_is_full ? 4'h6 : 4'h7; // @[DataPath_8to3.scala 102:34 103:27 105:27]
+  wire [3:0] _GEN_9 = FIFO_io_is_full ? 4'h6 : 4'h7; // @[DataPath_8to3.scala 94:34 95:27 97:27]
   wire  _T_10 = 4'h7 == state_reg; // @[DataPath_8to3.scala 42:22]
-  wire [3:0] _GEN_12 = FIFO_io_is_full ? 4'h7 : 4'h8; // @[DataPath_8to3.scala 109:34 110:27 112:27]
+  wire [3:0] _GEN_10 = FIFO_io_is_full ? 4'h7 : 4'h8; // @[DataPath_8to3.scala 101:34 102:27 104:27]
   wire  _T_11 = 4'h8 == state_reg; // @[DataPath_8to3.scala 42:22]
-  wire [3:0] _GEN_13 = io_handshake_i_valid ? 4'h1 : 4'h0; // @[DataPath_8to3.scala 119:43 120:31 122:31]
-  wire [3:0] _GEN_14 = FIFO_io_is_full ? 4'h8 : _GEN_13; // @[DataPath_8to3.scala 116:34 117:27]
-  wire [3:0] _GEN_15 = 4'h8 == state_reg ? _GEN_14 : state_reg; // @[DataPath_8to3.scala 42:22 36:28]
-  wire [1:0] _GEN_16 = 4'h8 == state_reg ? 2'h0 : flag_reg; // @[DataPath_8to3.scala 126:22 42:22 39:27]
-  wire [3:0] _GEN_17 = 4'h7 == state_reg ? _GEN_12 : _GEN_15; // @[DataPath_8to3.scala 42:22]
-  wire [1:0] _GEN_18 = 4'h7 == state_reg ? flag_reg : _GEN_16; // @[DataPath_8to3.scala 42:22 39:27]
-  wire [3:0] _GEN_19 = 4'h6 == state_reg ? _GEN_11 : _GEN_17; // @[DataPath_8to3.scala 42:22]
-  wire [1:0] _GEN_20 = 4'h6 == state_reg ? flag_reg : _GEN_18; // @[DataPath_8to3.scala 42:22 39:27]
-  wire [3:0] _GEN_21 = 4'h5 == state_reg ? _GEN_10 : _GEN_19; // @[DataPath_8to3.scala 42:22]
-  wire [1:0] _GEN_22 = 4'h5 == state_reg ? 2'h2 : _GEN_20; // @[DataPath_8to3.scala 42:22 99:22]
-  wire [3:0] _GEN_23 = 4'h4 == state_reg ? _GEN_8 : _GEN_21; // @[DataPath_8to3.scala 42:22]
-  wire [1:0] _GEN_24 = 4'h4 == state_reg ? flag_reg : _GEN_22; // @[DataPath_8to3.scala 42:22 39:27]
-  wire [3:0] _GEN_25 = 4'h3 == state_reg ? _GEN_7 : _GEN_23; // @[DataPath_8to3.scala 42:22]
-  wire  _GEN_26 = 4'h3 == state_reg ? io_data_i[7] : leave_1bit; // @[DataPath_8to3.scala 42:22 79:24 25:29]
-  wire [1:0] _GEN_27 = 4'h3 == state_reg ? flag_reg : _GEN_24; // @[DataPath_8to3.scala 42:22 39:27]
+  wire [3:0] _GEN_11 = FIFO_io_is_full ? 4'h8 : 4'h0; // @[DataPath_8to3.scala 108:34 109:27 111:27]
+  wire [3:0] _GEN_12 = 4'h8 == state_reg ? _GEN_11 : state_reg; // @[DataPath_8to3.scala 42:22 36:28]
+  wire [1:0] _GEN_13 = 4'h8 == state_reg ? 2'h0 : flag_reg; // @[DataPath_8to3.scala 114:22 42:22 39:27]
+  wire [3:0] _GEN_14 = 4'h7 == state_reg ? _GEN_10 : _GEN_12; // @[DataPath_8to3.scala 42:22]
+  wire [1:0] _GEN_15 = 4'h7 == state_reg ? flag_reg : _GEN_13; // @[DataPath_8to3.scala 42:22 39:27]
+  wire [3:0] _GEN_16 = 4'h6 == state_reg ? _GEN_9 : _GEN_14; // @[DataPath_8to3.scala 42:22]
+  wire [1:0] _GEN_17 = 4'h6 == state_reg ? flag_reg : _GEN_15; // @[DataPath_8to3.scala 42:22 39:27]
+  wire [3:0] _GEN_18 = 4'h5 == state_reg ? _GEN_8 : _GEN_16; // @[DataPath_8to3.scala 42:22]
+  wire [1:0] _GEN_19 = 4'h5 == state_reg ? 2'h2 : _GEN_17; // @[DataPath_8to3.scala 42:22 91:22]
+  wire [3:0] _GEN_20 = 4'h4 == state_reg ? _GEN_7 : _GEN_18; // @[DataPath_8to3.scala 42:22]
+  wire [1:0] _GEN_21 = 4'h4 == state_reg ? flag_reg : _GEN_19; // @[DataPath_8to3.scala 42:22 39:27]
+  wire [3:0] _GEN_22 = 4'h3 == state_reg ? _GEN_6 : _GEN_20; // @[DataPath_8to3.scala 42:22]
+  wire  _GEN_23 = 4'h3 == state_reg ? io_data_i[7] : leave_1bit; // @[DataPath_8to3.scala 42:22 75:24 25:29]
+  wire [1:0] _GEN_24 = 4'h3 == state_reg ? flag_reg : _GEN_21; // @[DataPath_8to3.scala 42:22 39:27]
   wire [2:0] _data_i_wire_T_3 = {io_data_i[0],leave_2bit}; // @[Cat.scala 31:58]
   wire [2:0] _data_i_wire_T_7 = {io_data_i[1:0],leave_1bit}; // @[Cat.scala 31:58]
-  wire [2:0] _GEN_40 = _T_11 ? io_data_i[7:5] : 3'h0; // @[DataPath_8to3.scala 137:22 168:25]
-  wire  _GEN_41 = _T_10 | _T_11; // @[DataPath_8to3.scala 137:22 163:27]
-  wire [2:0] _GEN_42 = _T_10 ? io_data_i[4:2] : _GEN_40; // @[DataPath_8to3.scala 137:22 164:25]
-  wire  _GEN_43 = _T_9 | _GEN_41; // @[DataPath_8to3.scala 137:22 159:27]
-  wire [2:0] _GEN_44 = _T_9 ? _data_i_wire_T_7 : _GEN_42; // @[DataPath_8to3.scala 137:22 160:25]
-  wire  _GEN_45 = _T_8 | _GEN_43; // @[DataPath_8to3.scala 137:22 155:27]
-  wire [2:0] _GEN_46 = _T_8 ? io_data_i[6:4] : _GEN_44; // @[DataPath_8to3.scala 137:22 156:25]
-  wire  _GEN_47 = _T_7 | _GEN_45; // @[DataPath_8to3.scala 137:22 151:27]
-  wire [2:0] _GEN_48 = _T_7 ? io_data_i[3:1] : _GEN_46; // @[DataPath_8to3.scala 137:22 152:25]
-  wire  _GEN_49 = _T_6 | _GEN_47; // @[DataPath_8to3.scala 137:22 147:27]
-  wire [2:0] _GEN_50 = _T_6 ? _data_i_wire_T_3 : _GEN_48; // @[DataPath_8to3.scala 137:22 148:25]
-  wire  _GEN_51 = _T_5 | _GEN_49; // @[DataPath_8to3.scala 137:22 143:27]
-  wire [2:0] _GEN_52 = _T_5 ? io_data_i[5:3] : _GEN_50; // @[DataPath_8to3.scala 137:22 144:25]
+  wire [2:0] _GEN_37 = _T_11 ? io_data_i[7:5] : 3'h0; // @[DataPath_8to3.scala 125:22 156:25]
+  wire  _GEN_38 = _T_10 | _T_11; // @[DataPath_8to3.scala 125:22 151:27]
+  wire [2:0] _GEN_39 = _T_10 ? io_data_i[4:2] : _GEN_37; // @[DataPath_8to3.scala 125:22 152:25]
+  wire  _GEN_40 = _T_9 | _GEN_38; // @[DataPath_8to3.scala 125:22 147:27]
+  wire [2:0] _GEN_41 = _T_9 ? _data_i_wire_T_7 : _GEN_39; // @[DataPath_8to3.scala 125:22 148:25]
+  wire  _GEN_42 = _T_8 | _GEN_40; // @[DataPath_8to3.scala 125:22 143:27]
+  wire [2:0] _GEN_43 = _T_8 ? io_data_i[6:4] : _GEN_41; // @[DataPath_8to3.scala 125:22 144:25]
+  wire  _GEN_44 = _T_7 | _GEN_42; // @[DataPath_8to3.scala 125:22 139:27]
+  wire [2:0] _GEN_45 = _T_7 ? io_data_i[3:1] : _GEN_43; // @[DataPath_8to3.scala 125:22 140:25]
+  wire  _GEN_46 = _T_6 | _GEN_44; // @[DataPath_8to3.scala 125:22 135:27]
+  wire [2:0] _GEN_47 = _T_6 ? _data_i_wire_T_3 : _GEN_45; // @[DataPath_8to3.scala 125:22 136:25]
+  wire  _GEN_48 = _T_5 | _GEN_46; // @[DataPath_8to3.scala 125:22 131:27]
+  wire [2:0] _GEN_49 = _T_5 ? io_data_i[5:3] : _GEN_47; // @[DataPath_8to3.scala 125:22 132:25]
   FIFO FIFO ( // @[DataPath_8to3.scala 27:22]
     .clock(FIFO_clock),
     .reset(FIFO_reset),
@@ -297,14 +294,14 @@ module DataPath_8to3(
     .io_write_en(FIFO_io_write_en),
     .io_is_full(FIFO_io_is_full)
   );
-  assign io_handshake_i_ready = (state_reg == 4'h2 | state_reg == 4'h5 | state_reg == 4'h8) & ~FIFO_io_is_full; // @[DataPath_8to3.scala 171:124]
-  assign io_handshake_o_ready = io_handshake_o_valid & ~FIFO_io_is_empty; // @[DataPath_8to3.scala 175:50]
-  assign io_data_o = FIFO_io_data_o; // @[DataPath_8to3.scala 176:15]
+  assign io_handshake_i_ready = (state_reg == 4'h2 | state_reg == 4'h5 | state_reg == 4'h8) & ~FIFO_io_is_full; // @[DataPath_8to3.scala 159:124]
+  assign io_handshake_o_ready = io_handshake_o_valid & ~FIFO_io_is_empty; // @[DataPath_8to3.scala 163:50]
+  assign io_data_o = FIFO_io_data_o; // @[DataPath_8to3.scala 164:15]
   assign FIFO_clock = clock;
   assign FIFO_reset = reset;
-  assign FIFO_io_read_en = io_handshake_o_valid; // @[DataPath_8to3.scala 174:21]
-  assign FIFO_io_data_i = _T_4 ? io_data_i[2:0] : _GEN_52; // @[DataPath_8to3.scala 137:22 140:25]
-  assign FIFO_io_write_en = _T_4 | _GEN_51; // @[DataPath_8to3.scala 137:22 139:27]
+  assign FIFO_io_read_en = io_handshake_o_valid; // @[DataPath_8to3.scala 162:21]
+  assign FIFO_io_data_i = _T_4 ? io_data_i[2:0] : _GEN_49; // @[DataPath_8to3.scala 125:22 128:25]
+  assign FIFO_io_write_en = _T_4 | _GEN_48; // @[DataPath_8to3.scala 125:22 127:27]
   always @(posedge clock) begin
     if (reset) begin // @[DataPath_8to3.scala 24:29]
       leave_2bit <= 2'h0; // @[DataPath_8to3.scala 24:29]
@@ -318,7 +315,7 @@ module DataPath_8to3(
     end else if (!(4'h0 == state_reg)) begin // @[DataPath_8to3.scala 42:22]
       if (!(4'h1 == state_reg)) begin // @[DataPath_8to3.scala 42:22]
         if (!(4'h2 == state_reg)) begin // @[DataPath_8to3.scala 42:22]
-          leave_1bit <= _GEN_26;
+          leave_1bit <= _GEN_23;
         end
       end
     end
@@ -339,18 +336,18 @@ module DataPath_8to3(
         state_reg <= 4'h2; // @[DataPath_8to3.scala 54:27]
       end
     end else if (4'h2 == state_reg) begin // @[DataPath_8to3.scala 42:22]
-      state_reg <= _GEN_6;
+      state_reg <= _GEN_5;
     end else begin
-      state_reg <= _GEN_25;
+      state_reg <= _GEN_22;
     end
     if (reset) begin // @[DataPath_8to3.scala 39:27]
       flag_reg <= 2'h0; // @[DataPath_8to3.scala 39:27]
     end else if (!(4'h0 == state_reg)) begin // @[DataPath_8to3.scala 42:22]
       if (!(4'h1 == state_reg)) begin // @[DataPath_8to3.scala 42:22]
         if (4'h2 == state_reg) begin // @[DataPath_8to3.scala 42:22]
-          flag_reg <= 2'h1; // @[DataPath_8to3.scala 70:22]
+          flag_reg <= 2'h1; // @[DataPath_8to3.scala 66:22]
         end else begin
-          flag_reg <= _GEN_27;
+          flag_reg <= _GEN_24;
         end
       end
     end
