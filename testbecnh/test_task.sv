@@ -125,6 +125,17 @@ task put_data_7();
     input_ch_7.prioity  = pkt.prioity_array [7];
 endtask
 
+task all_idle();
+    input_ch_0.valid = 1'b0;
+    input_ch_1.valid = 1'b0;
+    input_ch_2.valid = 1'b0;
+    input_ch_3.valid = 1'b0;
+    input_ch_4.valid = 1'b0;
+    input_ch_5.valid = 1'b0;
+    input_ch_6.valid = 1'b0;
+    input_ch_7.valid = 1'b0; 
+endtask
+
 task put_data(int trans_num);  
     automatic int ch_index = -1;
 
@@ -132,29 +143,41 @@ task put_data(int trans_num);
     wait(time_if.reset_n == 1);
     @(posedge time_if.clk);
 
-    // generate new data
-    pkt = new();
-    pkt.randomize();
-    pkt.show_ch_info();
+    repeat(2) begin
+        // generate new data
+        pkt = new();
+        pkt.randomize();
+        pkt.show_ch_info();
 
-    // get and save grant channel
-    ch_index = pkt.get_ch_index();
-    trans_data.push_back(pkt.data_array[ch_index]);
+        // get and save grant channel
+        ch_index = pkt.get_ch_index();
+        trans_data.push_back(pkt.data_array[ch_index]);
 
-    // put data on channel
-    put_data_0();
-    put_data_1();
-    put_data_2();
-    put_data_3();
-    put_data_4();
-    put_data_5();
-    put_data_6();
-    put_data_7();
+        // put data on channel
+        put_data_0();
+        put_data_1();
+        put_data_2();
+        put_data_3();
+        put_data_4();
+        put_data_5();
+        put_data_6();
+        put_data_7();
 
-    wait((input_ch_0.ready == 1'b1) || (input_ch_1.ready == 1'b1) || (input_ch_2.ready == 1'b1) ||
-         (input_ch_3.ready == 1'b1) || (input_ch_4.ready == 1'b1) || (input_ch_5.ready == 1'b1) ||
-         (input_ch_6.ready == 1'b1) || (input_ch_7.ready == 1'b1));
-    @(posedge time_if.clk);
+        // wait for response 
+        wait((input_ch_0.ready == 1'b1) || (input_ch_1.ready == 1'b1) || (input_ch_2.ready == 1'b1) ||
+            (input_ch_3.ready == 1'b1) || (input_ch_4.ready == 1'b1) || (input_ch_5.ready == 1'b1) ||
+            (input_ch_6.ready == 1'b1) || (input_ch_7.ready == 1'b1));
+        @(posedge time_if.clk);
+
+        // all channel idle
+        all_idle();
+
+        // refresh interval
+        repeat($urandom()%5) begin
+            @(posedge time_if.clk);
+        end
+    end
+    
 
 endtask
 

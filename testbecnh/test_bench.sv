@@ -61,7 +61,7 @@ module test_bench();
         join
         
 
-        #30;
+        #50;
         
         $finish();
     end

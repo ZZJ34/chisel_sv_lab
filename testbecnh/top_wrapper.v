@@ -5,49 +5,49 @@ module top_wrapper (
     // channel_1
     input        valid_i_0      ,
     input  [7:0] data_i_0       ,
-    input  [7:0] prioity_i_0    ,
+    input  [7:0] priority_i_0   ,
     output       ready_i_0      ,
 
     // channel_2
     input        valid_i_1      ,
     input  [7:0] data_i_1       ,
-    input  [7:0] prioity_i_1    ,
+    input  [7:0] priority_i_1   ,
     output       ready_i_1      ,
 
     // channel_3
     input        valid_i_2      ,
     input  [7:0] data_i_2       ,
-    input  [7:0] prioity_i_2    ,
+    input  [7:0] priority_i_2   ,
     output       ready_i_2      ,
 
     // channel_4
     input        valid_i_3      ,
     input  [7:0] data_i_3       ,
-    input  [7:0] prioity_i_3    ,
+    input  [7:0] priority_i_3   ,
     output       ready_i_3      ,
 
     // channel_5
     input        valid_i_4      ,
     input  [7:0] data_i_4       ,
-    input  [7:0] prioity_i_4    ,
+    input  [7:0] priority_i_4   ,
     output       ready_i_4      ,
 
     // channel_6
     input        valid_i_5      ,
     input  [7:0] data_i_5       ,
-    input  [7:0] prioity_i_5    ,
+    input  [7:0] priority_i_5   ,
     output       ready_i_5      ,
 
     // channel_7
     input        valid_i_6      ,
     input  [7:0] data_i_6       ,
-    input  [7:0] prioity_i_6    ,
+    input  [7:0] priority_i_6   ,
     output       ready_i_6      ,
 
     // channel_8
     input        valid_i_7      ,
     input  [7:0] data_i_7       ,
-    input  [7:0] prioity_i_7    ,
+    input  [7:0] priority_i_7   ,
     output       ready_i_7      ,
 
     output [2:0] data_o         ,
@@ -78,14 +78,14 @@ module top_wrapper (
         .io_data_vec_i_6    (data_i_6)      ,
         .io_data_vec_i_7    (data_i_7)      ,
         
-        .io_prioity_vec_i_0 (prioity_i_0)   ,
-        .io_prioity_vec_i_1 (prioity_i_1)   ,
-        .io_prioity_vec_i_2 (prioity_i_2)   ,
-        .io_prioity_vec_i_3 (prioity_i_3)   ,
-        .io_prioity_vec_i_4 (prioity_i_4)   ,
-        .io_prioity_vec_i_5 (prioity_i_5)   ,
-        .io_prioity_vec_i_6 (prioity_i_6)   ,
-        .io_prioity_vec_i_7 (prioity_i_7)   ,
+        .io_prioity_vec_i_0 (priority_i_0)   ,
+        .io_prioity_vec_i_1 (priority_i_1)   ,
+        .io_prioity_vec_i_2 (priority_i_2)   ,
+        .io_prioity_vec_i_3 (priority_i_3)   ,
+        .io_prioity_vec_i_4 (priority_i_4)   ,
+        .io_prioity_vec_i_5 (priority_i_5)   ,
+        .io_prioity_vec_i_6 (priority_i_6)   ,
+        .io_prioity_vec_i_7 (priority_i_7)   ,
 
         .io_ready_vec_i_0   (ready_i_0)     ,
         .io_ready_vec_i_1   (ready_i_1)     ,
