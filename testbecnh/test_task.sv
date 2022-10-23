@@ -143,7 +143,7 @@ task put_data(int trans_num);
     wait(time_if.reset_n == 1);
     @(posedge time_if.clk);
 
-    repeat(2) begin
+    repeat(trans_num) begin
         // generate new data
         pkt = new();
         pkt.randomize();
@@ -191,4 +191,7 @@ task get_data();
 
     output_ch.valid = 1'b1;
     
+endtask
+
+task check_data();
 endtask

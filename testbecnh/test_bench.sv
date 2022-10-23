@@ -50,14 +50,18 @@ module test_bench();
     // main
     initial begin
         fork
+            // send data
             begin
-                put_data(10);
+                put_data(2);
             end
-
+            // receive data
             begin
                 get_data();
             end
-            
+            // check data
+            begin
+                check_data();
+            end
         join
         
 
