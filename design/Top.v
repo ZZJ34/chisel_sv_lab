@@ -7,6 +7,14 @@ module DataPath_Mux(
   input        io_valid_vec_5,
   input        io_valid_vec_6,
   input        io_valid_vec_7,
+  input  [7:0] io_data_vec_0,
+  input  [7:0] io_data_vec_1,
+  input  [7:0] io_data_vec_2,
+  input  [7:0] io_data_vec_3,
+  input  [7:0] io_data_vec_4,
+  input  [7:0] io_data_vec_5,
+  input  [7:0] io_data_vec_6,
+  input  [7:0] io_data_vec_7,
   input  [7:0] io_prioity_vec_0,
   input  [7:0] io_prioity_vec_1,
   input  [7:0] io_prioity_vec_2,
@@ -44,20 +52,26 @@ module DataPath_Mux(
   wire [7:0] prioity_vec_temp_7 = prioity_vec_in_7 > prioity_vec_temp_6 ? io_prioity_vec_7 : prioity_vec_temp_6; // @[DataPath_Mux.scala 37:39]
   wire  _T_1 = prioity_vec_in_0 == prioity_vec_temp_7 & io_valid_vec_0; // @[DataPath_Mux.scala 46:54]
   wire  _GEN_0 = prioity_vec_in_0 == prioity_vec_temp_7 & io_valid_vec_0 & io_valid_vec_0; // @[DataPath_Mux.scala 42:20 46:76 47:28]
+  wire [7:0] _GEN_1 = prioity_vec_in_0 == prioity_vec_temp_7 & io_valid_vec_0 ? io_data_vec_0 : 8'h0; // @[DataPath_Mux.scala 43:19 46:76 48:27]
   wire  _T_3 = prioity_vec_in_1 == prioity_vec_temp_7 & io_valid_vec_1; // @[DataPath_Mux.scala 46:54]
-  wire  _GEN_1 = prioity_vec_in_1 == prioity_vec_temp_7 & io_valid_vec_1 ? io_valid_vec_1 : _GEN_0; // @[DataPath_Mux.scala 46:76 47:28]
+  wire  _GEN_2 = prioity_vec_in_1 == prioity_vec_temp_7 & io_valid_vec_1 ? io_valid_vec_1 : _GEN_0; // @[DataPath_Mux.scala 46:76 47:28]
+  wire [7:0] _GEN_3 = prioity_vec_in_1 == prioity_vec_temp_7 & io_valid_vec_1 ? io_data_vec_1 : _GEN_1; // @[DataPath_Mux.scala 46:76 48:27]
   wire  _T_5 = prioity_vec_in_2 == prioity_vec_temp_7 & io_valid_vec_2; // @[DataPath_Mux.scala 46:54]
-  wire  _GEN_2 = prioity_vec_in_2 == prioity_vec_temp_7 & io_valid_vec_2 ? io_valid_vec_2 : _GEN_1; // @[DataPath_Mux.scala 46:76 47:28]
+  wire  _GEN_4 = prioity_vec_in_2 == prioity_vec_temp_7 & io_valid_vec_2 ? io_valid_vec_2 : _GEN_2; // @[DataPath_Mux.scala 46:76 47:28]
+  wire [7:0] _GEN_5 = prioity_vec_in_2 == prioity_vec_temp_7 & io_valid_vec_2 ? io_data_vec_2 : _GEN_3; // @[DataPath_Mux.scala 46:76 48:27]
   wire  _T_7 = prioity_vec_in_3 == prioity_vec_temp_7 & io_valid_vec_3; // @[DataPath_Mux.scala 46:54]
-  wire  _GEN_3 = prioity_vec_in_3 == prioity_vec_temp_7 & io_valid_vec_3 ? io_valid_vec_3 : _GEN_2; // @[DataPath_Mux.scala 46:76 47:28]
+  wire  _GEN_6 = prioity_vec_in_3 == prioity_vec_temp_7 & io_valid_vec_3 ? io_valid_vec_3 : _GEN_4; // @[DataPath_Mux.scala 46:76 47:28]
+  wire [7:0] _GEN_7 = prioity_vec_in_3 == prioity_vec_temp_7 & io_valid_vec_3 ? io_data_vec_3 : _GEN_5; // @[DataPath_Mux.scala 46:76 48:27]
   wire  _T_9 = prioity_vec_in_4 == prioity_vec_temp_7 & io_valid_vec_4; // @[DataPath_Mux.scala 46:54]
-  wire  _GEN_4 = prioity_vec_in_4 == prioity_vec_temp_7 & io_valid_vec_4 ? io_valid_vec_4 : _GEN_3; // @[DataPath_Mux.scala 46:76 47:28]
+  wire  _GEN_8 = prioity_vec_in_4 == prioity_vec_temp_7 & io_valid_vec_4 ? io_valid_vec_4 : _GEN_6; // @[DataPath_Mux.scala 46:76 47:28]
+  wire [7:0] _GEN_9 = prioity_vec_in_4 == prioity_vec_temp_7 & io_valid_vec_4 ? io_data_vec_4 : _GEN_7; // @[DataPath_Mux.scala 46:76 48:27]
   wire  _T_11 = prioity_vec_in_5 == prioity_vec_temp_7 & io_valid_vec_5; // @[DataPath_Mux.scala 46:54]
-  wire  _GEN_5 = prioity_vec_in_5 == prioity_vec_temp_7 & io_valid_vec_5 ? io_valid_vec_5 : _GEN_4; // @[DataPath_Mux.scala 46:76 47:28]
+  wire  _GEN_10 = prioity_vec_in_5 == prioity_vec_temp_7 & io_valid_vec_5 ? io_valid_vec_5 : _GEN_8; // @[DataPath_Mux.scala 46:76 47:28]
+  wire [7:0] _GEN_11 = prioity_vec_in_5 == prioity_vec_temp_7 & io_valid_vec_5 ? io_data_vec_5 : _GEN_9; // @[DataPath_Mux.scala 46:76 48:27]
   wire  _T_13 = prioity_vec_in_6 == prioity_vec_temp_7 & io_valid_vec_6; // @[DataPath_Mux.scala 46:54]
-  wire  _GEN_6 = prioity_vec_in_6 == prioity_vec_temp_7 & io_valid_vec_6 ? io_valid_vec_6 : _GEN_5; // @[DataPath_Mux.scala 46:76 47:28]
+  wire  _GEN_12 = prioity_vec_in_6 == prioity_vec_temp_7 & io_valid_vec_6 ? io_valid_vec_6 : _GEN_10; // @[DataPath_Mux.scala 46:76 47:28]
+  wire [7:0] _GEN_13 = prioity_vec_in_6 == prioity_vec_temp_7 & io_valid_vec_6 ? io_data_vec_6 : _GEN_11; // @[DataPath_Mux.scala 46:76 48:27]
   wire  _T_15 = prioity_vec_in_7 == prioity_vec_temp_7 & io_valid_vec_7; // @[DataPath_Mux.scala 46:54]
-  wire  _GEN_7 = prioity_vec_in_7 == prioity_vec_temp_7 & io_valid_vec_7 ? io_valid_vec_7 : _GEN_6; // @[DataPath_Mux.scala 46:76 47:28]
   assign io_ready_vec_0 = _T_1 & io_ready_grant; // @[DataPath_Mux.scala 54:35]
   assign io_ready_vec_1 = _T_3 & io_ready_grant; // @[DataPath_Mux.scala 54:35]
   assign io_ready_vec_2 = _T_5 & io_ready_grant; // @[DataPath_Mux.scala 54:35]
@@ -66,8 +80,8 @@ module DataPath_Mux(
   assign io_ready_vec_5 = _T_11 & io_ready_grant; // @[DataPath_Mux.scala 54:35]
   assign io_ready_vec_6 = _T_13 & io_ready_grant; // @[DataPath_Mux.scala 54:35]
   assign io_ready_vec_7 = _T_15 & io_ready_grant; // @[DataPath_Mux.scala 54:35]
-  assign io_valid_grant = prioity_vec_in_7 == prioity_vec_temp_7 & io_valid_vec_7 ? io_valid_vec_7 : _GEN_6; // @[DataPath_Mux.scala 46:76 47:28]
-  assign io_data_grant = {{7'd0}, _GEN_7};
+  assign io_valid_grant = prioity_vec_in_7 == prioity_vec_temp_7 & io_valid_vec_7 ? io_valid_vec_7 : _GEN_12; // @[DataPath_Mux.scala 46:76 47:28]
+  assign io_data_grant = prioity_vec_in_7 == prioity_vec_temp_7 & io_valid_vec_7 ? io_data_vec_7 : _GEN_13; // @[DataPath_Mux.scala 46:76 48:27]
 endmodule
 module FIFO(
   input        clock,
@@ -440,6 +454,14 @@ module Top(
   wire  dataPath_Mux_io_valid_vec_5; // @[Top.scala 20:30]
   wire  dataPath_Mux_io_valid_vec_6; // @[Top.scala 20:30]
   wire  dataPath_Mux_io_valid_vec_7; // @[Top.scala 20:30]
+  wire [7:0] dataPath_Mux_io_data_vec_0; // @[Top.scala 20:30]
+  wire [7:0] dataPath_Mux_io_data_vec_1; // @[Top.scala 20:30]
+  wire [7:0] dataPath_Mux_io_data_vec_2; // @[Top.scala 20:30]
+  wire [7:0] dataPath_Mux_io_data_vec_3; // @[Top.scala 20:30]
+  wire [7:0] dataPath_Mux_io_data_vec_4; // @[Top.scala 20:30]
+  wire [7:0] dataPath_Mux_io_data_vec_5; // @[Top.scala 20:30]
+  wire [7:0] dataPath_Mux_io_data_vec_6; // @[Top.scala 20:30]
+  wire [7:0] dataPath_Mux_io_data_vec_7; // @[Top.scala 20:30]
   wire [7:0] dataPath_Mux_io_prioity_vec_0; // @[Top.scala 20:30]
   wire [7:0] dataPath_Mux_io_prioity_vec_1; // @[Top.scala 20:30]
   wire [7:0] dataPath_Mux_io_prioity_vec_2; // @[Top.scala 20:30]
@@ -476,6 +498,14 @@ module Top(
     .io_valid_vec_5(dataPath_Mux_io_valid_vec_5),
     .io_valid_vec_6(dataPath_Mux_io_valid_vec_6),
     .io_valid_vec_7(dataPath_Mux_io_valid_vec_7),
+    .io_data_vec_0(dataPath_Mux_io_data_vec_0),
+    .io_data_vec_1(dataPath_Mux_io_data_vec_1),
+    .io_data_vec_2(dataPath_Mux_io_data_vec_2),
+    .io_data_vec_3(dataPath_Mux_io_data_vec_3),
+    .io_data_vec_4(dataPath_Mux_io_data_vec_4),
+    .io_data_vec_5(dataPath_Mux_io_data_vec_5),
+    .io_data_vec_6(dataPath_Mux_io_data_vec_6),
+    .io_data_vec_7(dataPath_Mux_io_data_vec_7),
     .io_prioity_vec_0(dataPath_Mux_io_prioity_vec_0),
     .io_prioity_vec_1(dataPath_Mux_io_prioity_vec_1),
     .io_prioity_vec_2(dataPath_Mux_io_prioity_vec_2),
@@ -524,6 +554,14 @@ module Top(
   assign dataPath_Mux_io_valid_vec_5 = io_valid_vec_i_5; // @[Top.scala 25:33]
   assign dataPath_Mux_io_valid_vec_6 = io_valid_vec_i_6; // @[Top.scala 25:33]
   assign dataPath_Mux_io_valid_vec_7 = io_valid_vec_i_7; // @[Top.scala 25:33]
+  assign dataPath_Mux_io_data_vec_0 = io_data_vec_i_0; // @[Top.scala 24:33]
+  assign dataPath_Mux_io_data_vec_1 = io_data_vec_i_1; // @[Top.scala 24:33]
+  assign dataPath_Mux_io_data_vec_2 = io_data_vec_i_2; // @[Top.scala 24:33]
+  assign dataPath_Mux_io_data_vec_3 = io_data_vec_i_3; // @[Top.scala 24:33]
+  assign dataPath_Mux_io_data_vec_4 = io_data_vec_i_4; // @[Top.scala 24:33]
+  assign dataPath_Mux_io_data_vec_5 = io_data_vec_i_5; // @[Top.scala 24:33]
+  assign dataPath_Mux_io_data_vec_6 = io_data_vec_i_6; // @[Top.scala 24:33]
+  assign dataPath_Mux_io_data_vec_7 = io_data_vec_i_7; // @[Top.scala 24:33]
   assign dataPath_Mux_io_prioity_vec_0 = io_prioity_vec_i_0; // @[Top.scala 26:33]
   assign dataPath_Mux_io_prioity_vec_1 = io_prioity_vec_i_1; // @[Top.scala 26:33]
   assign dataPath_Mux_io_prioity_vec_2 = io_prioity_vec_i_2; // @[Top.scala 26:33]
