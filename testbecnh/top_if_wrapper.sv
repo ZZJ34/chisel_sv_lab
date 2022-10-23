@@ -1,6 +1,5 @@
 module top_if_wrapper(
-    input  clk        ,
-    input  reset_n    ,
+    global_if    _if_time     ,
 
     input_if     _if_i_ch0    ,
     input_if     _if_i_ch1    ,
@@ -15,8 +14,8 @@ module top_if_wrapper(
 );
 
     top_wrapper i_top_wrapper(
-        .clk    (clk)           ,
-        .reset_n(reset_n)       ,
+        .clk    (_if_time.clk)           ,
+        .reset_n(_if_time.reset_n)       ,
 
         // channel_1
         .valid_i_0  (_if_i_ch0.valid)    ,

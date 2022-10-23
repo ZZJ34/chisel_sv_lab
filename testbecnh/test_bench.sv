@@ -1,19 +1,18 @@
 module test_bench();
 
-    logic reset_n; 
-    logic clk;     
+    global_if time_if();
 
     // reset signal
     initial begin
-        reset_n = 1'b0;
-        # 25 reset_n = 1'b1;
+        time_if.reset_n = 1'b0;
+        # 25 time_if.reset_n = 1'b1;
     end
 
     // clock singal
     initial begin
-        clk = 1'b0;
+        time_if.clk = 1'b0;
         forever begin
-            #5 clk = ~clk;
+            #5 time_if.clk = ~time_if.clk;
         end
     end
 
@@ -31,18 +30,18 @@ module test_bench();
 
     // dut
     top_if_wrapper i_top_if_wrapper(
-        .clk      (clk)           ,
-        .reset_n  (reset_n)       ,
-        ._if_i_ch0(input_ch_0)    ,
-        ._if_i_ch1(input_ch_1)    ,
-        ._if_i_ch2(input_ch_2)    ,
-        ._if_i_ch3(input_ch_3)    ,
-        ._if_i_ch4(input_ch_4)    ,
-        ._if_i_ch5(input_ch_5)    ,
-        ._if_i_ch6(input_ch_6)    ,
-        ._if_i_ch7(input_ch_7)    ,
+        ._if_time(time_if.dut)       ,
 
-        ._if_o(output_ch)        
+        ._if_i_ch0(input_ch_0.dut)    ,
+        ._if_i_ch1(input_ch_1.dut)    ,
+        ._if_i_ch2(input_ch_2.dut)    ,
+        ._if_i_ch3(input_ch_3.dut)    ,
+        ._if_i_ch4(input_ch_4.dut)    ,
+        ._if_i_ch5(input_ch_5.dut)    ,
+        ._if_i_ch6(input_ch_6.dut)    ,
+        ._if_i_ch7(input_ch_7.dut)    ,
+
+        ._if_o(output_ch.dut)        
     );
 
     `include "./test_task.sv"
@@ -50,10 +49,19 @@ module test_bench();
     
     // main
     initial begin
+        fork
+            begin
+                put_data(10);
+            end
 
-        put_data(10);
+            begin
+                get_data();
+            end
+            
+        join
+        
 
-        get_data();
+        #30;
         
         $finish();
     end

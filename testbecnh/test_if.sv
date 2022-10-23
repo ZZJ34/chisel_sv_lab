@@ -15,3 +15,11 @@ interface output_if;
 
     modport dut (input data, input ready, output valid);
 endinterface
+
+
+interface global_if;
+    logic       clk;
+    logic       reset_n;
+
+    modport dut (output clk, output reset_n);
+endinterface

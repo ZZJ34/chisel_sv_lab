@@ -45,7 +45,7 @@ class DataPath_Mux(channel_num: Int) extends Module{
     for(index <- 0 until channel_num){
         when((prioity_vec_in(index) === prioity_max) & io.valid_vec(index)){
             io.valid_grant := io.valid_vec(index)
-            io.data_grant := io.valid_vec(index)
+            io.data_grant := io.data_vec(index)
         }
     }
 
