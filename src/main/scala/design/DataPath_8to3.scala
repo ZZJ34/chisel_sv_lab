@@ -60,11 +60,7 @@ class DataPath_8to3(address_width: Int) extends Module{
             when(FIFO.io.is_full){
                 state_reg := leave_none_2
             }.otherwise{
-                when(io.handshake_i.valid){
-                    state_reg := leave_2bit_1
-                }.otherwise{
-                    state_reg := nothing
-                }
+                state_reg := nothing
             }
 
             flag_reg := _2bit
@@ -89,11 +85,7 @@ class DataPath_8to3(address_width: Int) extends Module{
             when(FIFO.io.is_full){
                 state_reg := leave_2bit_3
             }.otherwise{
-                when(io.handshake_i.valid){
-                    state_reg := leave_1bit_1
-                }.otherwise{
-                    state_reg := nothing
-                }
+                state_reg := nothing
             }
 
             flag_reg := _1bit
@@ -116,11 +108,7 @@ class DataPath_8to3(address_width: Int) extends Module{
             when(FIFO.io.is_full){
                 state_reg := leave_1bit_3
             }.otherwise{
-                when(io.handshake_i.valid){
-                    state_reg := leave_none_1
-                }.otherwise{
-                    state_reg := nothing
-                }
+                state_reg := nothing
             }
             
             flag_reg := none
