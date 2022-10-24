@@ -43,7 +43,7 @@ class DataPath_Mux(channel_num: Int) extends Module{
     io.data_grant := 0.U
 
     for(index <- 0 until channel_num){
-        when((prioity_vec_in(index) === prioity_max) & io.valid_vec(index)){
+        when(io.valid_vec(index) & (prioity_vec_in(index) === prioity_max)){
             io.valid_grant := io.valid_vec(index)
             io.data_grant := io.data_vec(index)
         }
@@ -51,6 +51,6 @@ class DataPath_Mux(channel_num: Int) extends Module{
 
     // 输入信号
     for(index <- 0 until channel_num){
-        io.ready_vec(index) := Mux((prioity_vec_in(index) === prioity_max) & io.valid_vec(index), io.ready_grant, false.B)
+        io.ready_vec(index) := Mux(io.valid_vec(index) & (prioity_vec_in(index) === prioity_max), io.ready_grant, false.B)
     }
 }

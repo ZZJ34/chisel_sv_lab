@@ -57,10 +57,11 @@ class Input_Data;
             $display("Error: get grant channel failed");
         end
         else begin
-            $display("grant channel");
+            $display($realtime, " : grant channel");
             $display("channel %8d", ch_index);
             $display("prioity %8b", prioity_array[ch_index]);
             $display("data    %8b", data_array[ch_index]);
+            $display("data    %8d", data_array[ch_index]);
             $display("valid   %8b", valid_array[ch_index]);
             $display();
         end
@@ -72,8 +73,11 @@ endclass
 
 bit [7:0] trans_data [$];
 
-int       data_index = 0;
-bit [2:0] bit_index  = 0;
+int data_index = 0;
+int bit_index  = 0;
+
+longint right_num = 0;
+longint error_num = 0;
 
 Input_Data pkt;
 
@@ -164,6 +168,7 @@ task put_data(int trans_num, int max_delay);
         put_data_7();
 
         // wait for response 
+        @(posedge time_if.clk);
         wait((input_ch_0.ready == 1'b1) || (input_ch_1.ready == 1'b1) || (input_ch_2.ready == 1'b1) ||
             (input_ch_3.ready == 1'b1) || (input_ch_4.ready == 1'b1) || (input_ch_5.ready == 1'b1) ||
             (input_ch_6.ready == 1'b1) || (input_ch_7.ready == 1'b1));
@@ -172,7 +177,7 @@ task put_data(int trans_num, int max_delay);
         // all channel idle
         all_idle();
 
-        // refresh interval
+        //refresh interval
         repeat($urandom()%max_delay) begin
             @(posedge time_if.clk);
         end
@@ -182,9 +187,6 @@ task put_data(int trans_num, int max_delay);
 endtask
 
 task get_data(int get_num, int max_delay);
-
-    // $display("%p", trans_data);
-
     // wait reset disassert
     wait(time_if.reset_n == 1);
     @(posedge time_if.clk);
@@ -206,5 +208,49 @@ task get_data(int get_num, int max_delay);
     
 endtask
 
-task check_data();
+task check_data(int get_num);
+    automatic bit [2:0] expected_data = 0;
+
+    repeat(get_num) begin
+        while(1) begin
+            @(posedge time_if.clk);
+            if(output_ch.ready == 1'b1) break;
+        end
+
+        $display("[check]   actual 3bit data: %3b", output_ch.data);
+
+        if((bit_index+3) < 8) begin
+            expected_data = trans_data[data_index][bit_index +: 3];
+        end
+        else if((bit_index+3) == 8) begin
+            expected_data = trans_data[data_index][7:5];
+        end
+        else if((bit_index+3) > 8) begin
+            expected_data = {trans_data[data_index+1], trans_data[data_index]}[bit_index +: 3];
+        end
+        
+
+        $display("[check] expected 3bit data: %3b", expected_data);
+        
+        if(expected_data == output_ch.data) begin
+            $display("[check] right!!!");
+            right_num = right_num + 1;
+        end
+        else begin
+            $display("[check] error!!!");
+            $display("%p", trans_data);
+            $display("bit_index  %10d", bit_index);
+            $display("data_index %10d", data_index);
+            error_num = error_num + 1;
+
+            //$finish();
+        end
+
+        data_index = data_index + (bit_index+3)/8;
+        bit_index = (bit_index+3)%8;
+        
+
+        $display();
+    end
+    
 endtask

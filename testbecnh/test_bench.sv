@@ -1,3 +1,5 @@
+`timescale 1ns/1ns
+
 module test_bench();
 
     global_if time_if();
@@ -47,7 +49,7 @@ module test_bench();
     `include "./test_task.sv"
 
     // global par
-    int trans_num = 3;
+    int trans_num = 30;
     int get_num = $floor(real'(trans_num*8/3));
 
     int trans_delay_max = 5;
@@ -67,12 +69,17 @@ module test_bench();
             end
             // check data
             begin
-                check_data();
+                check_data(get_num);
             end
         join
         
 
         #50;
+
+        $display("---------------------------------");
+        $display("[check] all right : %d", right_num);
+        $display("[check] all error : %d", error_num);
+        $display("---------------------------------");
         
         $finish();
     end
