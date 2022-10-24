@@ -178,9 +178,9 @@ task put_data(int trans_num, int max_delay);
         all_idle();
 
         //refresh interval
-        repeat($urandom()%max_delay) begin
-            @(posedge time_if.clk);
-        end
+        // repeat($urandom()%max_delay) begin
+        //     @(posedge time_if.clk);
+        // end
     end
     
 
