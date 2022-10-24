@@ -136,7 +136,7 @@ task all_idle();
     input_ch_7.valid = 1'b0; 
 endtask
 
-task put_data(int trans_num);  
+task put_data(int trans_num, int max_delay);  
     automatic int ch_index = -1;
 
     // wait reset disassert
@@ -173,7 +173,7 @@ task put_data(int trans_num);
         all_idle();
 
         // refresh interval
-        repeat($urandom()%5) begin
+        repeat($urandom()%max_delay) begin
             @(posedge time_if.clk);
         end
     end
@@ -181,7 +181,7 @@ task put_data(int trans_num);
 
 endtask
 
-task get_data();
+task get_data(int get_num, int max_delay);
 
     // $display("%p", trans_data);
 
@@ -189,7 +189,20 @@ task get_data();
     wait(time_if.reset_n == 1);
     @(posedge time_if.clk);
 
-    output_ch.valid = 1'b1;
+    repeat(get_num) begin
+        output_ch.valid = 1'b1;
+
+        // wait for ready
+        wait(output_ch.ready == 1'b1);
+        @(posedge time_if.clk);
+
+        output_ch.valid = 1'b0;
+
+        // get interval
+        repeat($urandom()%max_delay) begin
+            @(posedge time_if.clk);
+        end
+    end
     
 endtask
 

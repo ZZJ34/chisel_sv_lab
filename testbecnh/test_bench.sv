@@ -46,17 +46,24 @@ module test_bench();
 
     `include "./test_task.sv"
 
+    // global par
+    int trans_num = 3;
+    int get_num = $floor(real'(trans_num*8/3));
+
+    int trans_delay_max = 5;
+    int get_delay_max = 10;
+
     
     // main
     initial begin
         fork
             // send data
             begin
-                put_data(2);
+                put_data(trans_num, trans_delay_max); 
             end
             // receive data
             begin
-                get_data();
+                get_data(get_num, get_delay_max);
             end
             // check data
             begin
