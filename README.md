@@ -4,9 +4,9 @@ See the `Makefile` for the HDL code and test targets.
 
 See the `build.sbt` for chisel vesrion and scala version.
 
-使用 chisel 进行设计生成 RTL 代码
+使用 Chisel 进行设计生成 RTL 代码
 
-使用 systemVerilog 进行测试仿真
+使用 SystemVerilog 进行测试仿真
 
 ## 设计
 
@@ -18,6 +18,8 @@ See the `build.sbt` for chisel vesrion and scala version.
 
 ## 测试
 
+### `./testbench_1/`
+
 1. top_warapper.v  对 chisel 产生的 verilog 代码进行端口封装
 
 2. top_if_warapper.v 使用 interface 对 top_warapper.v 进行封装
@@ -27,3 +29,7 @@ See the `build.sbt` for chisel vesrion and scala version.
 4. test_task.sv 测试数据类定义，测试 task 定于
 
 5. test_bench.sv 测试平台顶层
+
+### `./testbench_2/`
+
+搭建类似于 UVM 的组件进行仿真测试
