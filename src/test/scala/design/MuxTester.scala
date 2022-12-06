@@ -17,7 +17,7 @@ class DataPath_MuxTester1 extends AnyFlatSpec with ChiselScalatestTester{
 
             for(j <- 0 to 10){
                 for(i <- 0 until 4){
-                    dut.io.prioity_vec(i).poke(((i+j)%4).U)
+                    dut.io.priority_vec(i).poke(((i+j)%4).U)
                     dut.io.data_vec(i).poke((i+j+4).U)
                 }
                 dut.clock.step(2)

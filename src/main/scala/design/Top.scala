@@ -8,7 +8,7 @@ class Top(channel_num: Int, address_width: Int) extends Module{
     val io = IO(new Bundle{
         val valid_vec_i = Input(Vec(channel_num, Bool()))
         val data_vec_i = Input(Vec(channel_num, UInt(8.W)))
-        val prioity_vec_i = Input(Vec(channel_num, UInt(8.W)))
+        val priority_vec_i = Input(Vec(channel_num, UInt(8.W)))
         val ready_vec_i = Output(Vec(channel_num, Bool()))
 
         val data_o = Output(UInt(3.W))
@@ -23,7 +23,7 @@ class Top(channel_num: Int, address_width: Int) extends Module{
     
     dataPath_Mux.io.data_vec    := io.data_vec_i
     dataPath_Mux.io.valid_vec   := io.valid_vec_i
-    dataPath_Mux.io.prioity_vec := io.prioity_vec_i
+    dataPath_Mux.io.priority_vec := io.priority_vec_i
     io.ready_vec_i :=  dataPath_Mux.io.ready_vec
 
     dataPath_8to3.io.data_i := dataPath_Mux.io.data_grant
